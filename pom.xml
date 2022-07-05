@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>bg.softuni</groupId>
+    <artifactId>algorithms-fundamentals-with-java-june-2022</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <modules>
+        <module>Recursion and Backtracking - Lab</module>
+        <module>Combinatorial Problems - Lab</module>
+        <module>Recursion and Combinatorial Problems - Exercise</module>
+        <module>Searching-Sorting-Greedy Algorithms - Lab</module>
+        <module>Graph Theory-Traversal-Shortest Paths - Lab</module>
+        <module>Graph Theory-Traversal-Shortest Paths - Exercise</module>
+        <module>Dynamic Programming - Lab</module>
+        <module>Dynamic Programming - Exercise</module>
+    </modules>
+
+</project>
