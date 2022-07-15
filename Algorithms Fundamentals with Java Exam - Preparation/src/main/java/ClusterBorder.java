@@ -19,20 +19,19 @@ public class ClusterBorder {
         }
 
         List<String> output = new ArrayList<>();
-        for (int i = dp.length - 1; i > 0; i--) {
-            int timeDiff = dp[i] - dp[i - 1];
-
-            if (timeDiff == shipsAlone[i - 1]) {
-                output.add("Single " + i);
+        int index = dp.length - 1;
+        while (index > 0) {
+            int timeDifference = dp[index] - dp[index - 1];
+            if (timeDifference == shipsAlone[index - 1]) {
+                output.add(0, "Single " + index);
+                index--;
             } else {
-                output.add("Pair of " + (i - 1) + " and " + i);
-                i--;
+                output.add(0, "Pair of " + (index - 1) + " and " + index);
+                index -= 2;
             }
         }
 
         System.out.println("Optimal Time: " + dp[shipsAlone.length]);
-        for (int i = output.size() - 1; i >= 0; i--) {
-            System.out.println(output.get(i));
-        }
+        output.forEach(System.out::println);
     }
 }
