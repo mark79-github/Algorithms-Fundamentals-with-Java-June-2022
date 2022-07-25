@@ -13,26 +13,27 @@ public class Guards {
 
     private static boolean[] bfs(int source) {
 
-        boolean[] visited = new boolean[graph.size() + 1];
+        boolean[] isVisited = new boolean[graph.size() + 1];
 
-        visited[source] = true;
+        isVisited[source] = true;
         Deque<Integer> queue = new ArrayDeque<>();
         queue.offer(source);
         while (!queue.isEmpty()) {
             int node = queue.poll();
             for (int child : graph.get(node)) {
-                if (!visited[child]) {
+                if (!isVisited[child]) {
                     queue.offer(child);
-                    visited[child] = true;
+                    isVisited[child] = true;
                 }
             }
         }
 
-        return visited;
+        return isVisited;
     }
 
     private static void printNotConnectedComponents(boolean[] visited) {
-        String result = IntStream.range(1, visited.length)
+        String result = IntStream.range(0, visited.length)
+                .skip(1)
                 .filter(e -> !visited[e])
                 .mapToObj(String::valueOf)
                 .collect(Collectors.joining(" "));
@@ -53,7 +54,6 @@ public class Guards {
             int from = connection[0];
             int to = connection[1];
 
-            graph.putIfAbsent(from, new HashSet<>());
             graph.get(from).add(to);
         }
     }

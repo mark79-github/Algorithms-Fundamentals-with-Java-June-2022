@@ -14,17 +14,17 @@ public class Trains {
         int platformNeeded = 0;
         int maxPlatforms = 0;
         int n = arr.length;
+
         Arrays.sort(arr);
         Arrays.sort(dep);
+
         int i = 0;
         int j = 0;
-
-        while (i < n && j < n) {
+        while (i < n) {
             if (arr[i] < dep[j]) {
                 platformNeeded++;
                 i++;
-                if (platformNeeded > maxPlatforms)
-                    maxPlatforms = platformNeeded;
+                maxPlatforms = Math.max(maxPlatforms, platformNeeded);
             } else {
                 platformNeeded--;
                 j++;
@@ -42,6 +42,4 @@ public class Trains {
         int totalCount = findNumberOfPlatforms(arrivalTimes, departureTimes);
         System.out.println(totalCount);
     }
-
-
 }
