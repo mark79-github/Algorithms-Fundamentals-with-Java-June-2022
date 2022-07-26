@@ -5,17 +5,17 @@ import java.io.InputStreamReader;
 public class Stairs {
     private static long[] dp;
 
-    private static long fib(int n) {
+    private static long step(int n) {
         if (dp[n] != 0) {
             return dp[n];
         }
 
-        if (n < 2) {
-            dp[n] = n;
+        if (n == 0 || n == 1) {
+            dp[n] = 1;
             return dp[n];
         }
 
-        dp[n] = fib(n - 2) + fib(n - 1);
+        dp[n] = step(n - 2) + step(n - 1);
         return dp[n];
     }
 
@@ -23,9 +23,9 @@ public class Stairs {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(reader.readLine());
 
-        dp = new long[n + 2];
+        dp = new long[n + 1];
 
-        long result = fib(n + 1);
+        long result = step(n);
         System.out.println(result);
     }
 }
