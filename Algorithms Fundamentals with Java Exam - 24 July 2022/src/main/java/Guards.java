@@ -10,13 +10,13 @@ public class Guards {
     private static final Map<Integer, Set<Integer>> graph = new HashMap<>();
     private static int nodes;
     private static int edges;
+    private static int source;
 
-    private static boolean[] bfs(int source) {
-
+    private static boolean[] bfs() {
         boolean[] isVisited = new boolean[graph.size() + 1];
+        Deque<Integer> queue = new ArrayDeque<>();
 
         isVisited[source] = true;
-        Deque<Integer> queue = new ArrayDeque<>();
         queue.offer(source);
         while (!queue.isEmpty()) {
             int node = queue.poll();
@@ -70,9 +70,9 @@ public class Guards {
         initializeGraph();
         initializeGraphData(reader);
 
-        int start = readSingleIntegerNumber(reader);
+        source = readSingleIntegerNumber(reader);
 
-        boolean[] visited = bfs(start);
+        boolean[] visited = bfs();
         printNotConnectedComponents(visited);
     }
 }
