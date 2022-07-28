@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -41,36 +39,31 @@ public class Guards {
     }
 
     public static void initializeGraph() {
-        for (int i = 1; i <= nodes; i++) {
-            graph.putIfAbsent(i, new HashSet<>());
-        }
+        IntStream.rangeClosed(1, nodes)
+                .forEach(i -> graph.putIfAbsent(i, new HashSet<>()));
     }
 
-    private static void initializeGraphData(BufferedReader reader) throws IOException {
-        for (int i = 0; i < edges; i++) {
-            int[] connection = Arrays.stream(reader.readLine().split("\\s+"))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            int from = connection[0];
-            int to = connection[1];
-
-            graph.get(from).add(to);
-        }
+    private static void initializeGraphData(Scanner reader) {
+        IntStream.range(0, edges)
+                .mapToObj(i -> Arrays.stream(reader.nextLine().split("\\s"))
+                        .mapToInt(Integer::parseInt)
+                        .toArray())
+                .forEach(arr -> graph.get(arr[0]).add(arr[1]));
     }
 
-    private static int readSingleIntegerNumber(BufferedReader reader) throws IOException {
-        return Integer.parseInt(reader.readLine());
+    private static int readSingleIntegerNumber(Scanner scanner) {
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        nodes = readSingleIntegerNumber(reader);
-        edges = readSingleIntegerNumber(reader);
+        Scanner scanner = new Scanner(System.in);
+        nodes = readSingleIntegerNumber(scanner);
+        edges = readSingleIntegerNumber(scanner);
 
         initializeGraph();
-        initializeGraphData(reader);
+        initializeGraphData(scanner);
 
-        source = readSingleIntegerNumber(reader);
+        source = readSingleIntegerNumber(scanner);
 
         boolean[] visited = bfs();
         printNotConnectedComponents(visited);
