@@ -1,17 +1,16 @@
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Guards {
+public class GuardsList {
 
-    private static final Map<Integer, Set<Integer>> graph = new HashMap<>();
+    private static final List<Set<Integer>> graph = new ArrayList<>();
     private static int nodes;
     private static int edges;
     private static int source;
 
     private static boolean[] bfs() {
-        boolean[] isVisited = new boolean[graph.size() + 1];
+        boolean[] isVisited = new boolean[graph.size()];
         Deque<Integer> queue = new ArrayDeque<>();
 
         isVisited[source] = true;
@@ -39,8 +38,8 @@ public class Guards {
     }
 
     public static void initializeGraph() {
-        IntStream.rangeClosed(1, nodes)
-                .forEach(i -> graph.putIfAbsent(i, new HashSet<>()));
+        IntStream.rangeClosed(0, nodes)
+                .forEach(i -> graph.add(new TreeSet<>()));
     }
 
     private static void initializeGraphData(Scanner reader) {
@@ -55,7 +54,7 @@ public class Guards {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         nodes = readSingleIntegerNumber(scanner);
         edges = readSingleIntegerNumber(scanner);
@@ -69,3 +68,4 @@ public class Guards {
         printNotConnectedComponents(visited);
     }
 }
+

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RecursiveFibonacci {
-    private static Map<Integer, Long> memory = new HashMap<>();
+    private static final Map<Integer, Long> memory = new HashMap<>();
 
     private static long fib(int number) {
         if (number <= 1) {
